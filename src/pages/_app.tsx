@@ -8,6 +8,7 @@ import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
 import Navbar from "~/ui/navbar";
+import Head from "next/head";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -19,8 +20,22 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} forcedTheme="light">
-        <div className={`${geist.className} min-h-screen text-base leading-relaxed`}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem={false}
+        forcedTheme="light"
+      >
+        <Head>
+          <title>Rooki</title>
+          <meta
+            name="description"
+            content="Rooki App - Your personal assistant to grow your social media presence"
+          />
+        </Head>
+        <div
+          className={`${geist.className} min-h-screen text-base leading-relaxed`}
+        >
           <Navbar />
           <Component {...pageProps} />
         </div>
