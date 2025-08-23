@@ -17,6 +17,13 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    AUTH_TWITTER_CLIENT: z.string(),
+    AUTH_TWITTER_SECRET: z.string(),
+    TWITTER_BEARER_TOKEN: z.string(),
+    SUPABASE_SERVICE_ROLE_KEY: z.string(),
+    TELEGRAM_API_ID: z.string(),
+    TELEGRAM_API_HASH: z.string(),
+    TELEGRAM_BOT_TOKEN: z.string(),
   },
 
   /**
@@ -25,7 +32,7 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_SUPABASE_URL: z.string(),
   },
 
   /**
@@ -38,6 +45,14 @@ export const env = createEnv({
     AUTH_DISCORD_SECRET: process.env.AUTH_DISCORD_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
+    AUTH_TWITTER_CLIENT: process.env.AUTH_TWITTER_CLIENT,
+    AUTH_TWITTER_SECRET: process.env.AUTH_TWITTER_SECRET,
+    TWITTER_BEARER_TOKEN: process.env.TWITTER_BEARER_TOKEN,
+    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    TELEGRAM_API_ID: process.env.TELEGRAM_API_ID,
+    TELEGRAM_API_HASH: process.env.TELEGRAM_API_HASH,
+    TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
