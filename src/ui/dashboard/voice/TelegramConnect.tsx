@@ -69,7 +69,7 @@ export default function TelegramConnect({
       )}
 
       <Heading level={3} className="mb-4 text-xl font-semibold text-gray-900">
-        Let's Chat on Telegram
+        Chat on Telegram
         {isConnected && (
           <span className="ml-2 inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
             Connected

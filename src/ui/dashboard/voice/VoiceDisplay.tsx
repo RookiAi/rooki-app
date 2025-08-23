@@ -65,14 +65,22 @@ const VoiceDisplay: React.FC<VoiceDisplayProps> = ({
   const toneAttributes = getToneAttributes();
 
   return (
-    <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-xl relative">
+    <div className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl">
       <div className="absolute top-8 right-8">
         <Button onClick={onEditToggle}>Edit Voice Profile</Button>
       </div>
-      
-      <Heading level={2} className="mb-8 text-3xl font-bold text-gray-900 pr-36">
+
+      <Heading
+        level={2}
+        className="mb-8 pr-36 text-3xl font-bold text-gray-900"
+      >
         Your Intern's Voice Profile
       </Heading>
+
+      <Text className="mb-4 text-base text-gray-600">
+        This is your intern's voice profile, which outlines their unique
+        communication style and preferences.
+      </Text>
 
       <div className="mb-8">
         <Strong className="mb-3 block text-lg text-gray-700">

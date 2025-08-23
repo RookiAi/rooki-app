@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Text } from "~/components/text";
 import { Heading } from "~/components/heading";
 import VoiceTab from "./voice";
+import SalaryTab from "./salary";
 
 type TabType = "voice" | "standup" | "salary";
 
@@ -144,37 +145,7 @@ export default function Dashboard() {
                 : "pointer-events-none absolute inset-0 z-0 opacity-0"
             }`}
           >
-            <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-xl">
-              <Heading
-                level={2}
-                className="mb-6 text-3xl font-bold text-gray-900"
-              >
-                Salary
-              </Heading>
-              <div className="flex flex-col items-center justify-center rounded-xl bg-gray-50 p-8">
-                <svg
-                  className="mb-4 h-16 w-16 text-gray-300"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <Text className="mb-2 text-center text-xl font-medium text-gray-600 dark:text-gray-300">
-                  Salary features coming soon
-                </Text>
-                <Text className="max-w-md text-center text-gray-500 dark:text-gray-400">
-                  We're working on new features to make your salary management
-                  more efficient and insightful.
-                </Text>
-              </div>
-            </div>
+            <SalaryTab />
           </div>
         </div>
       </div>

@@ -184,3 +184,13 @@ model DraftFromTweet {
   updatedAt  DateTime @updatedAt
 
 }
+
+model Salary {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  amount           Float
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+}
