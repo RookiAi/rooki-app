@@ -11,16 +11,13 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo/App Name */}
           <div className="flex flex-shrink-0 items-center">
-            <Link
-              href="/"
-              className="text-xl font-bold text-zinc-950"
-            >
+            <Link href="/" className="text-xl font-bold text-zinc-950">
               Rooki
             </Link>
           </div>
 
           {/* Navigation Links/Buttons */}
-          <div className="flex items-center space-x-4">            
+          <div className="flex items-center space-x-4">
             {session ? (
               <Link
                 href="/dashboard"
@@ -29,7 +26,7 @@ export default function Navbar() {
                 Dashboard
               </Link>
             ) : (
-              <Button onClick={() => void signIn()}>Log in</Button>
+              <Button onClick={() => void signIn("twitter")}>Log in</Button>
             )}
           </div>
         </div>
