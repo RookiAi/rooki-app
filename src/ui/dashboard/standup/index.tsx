@@ -165,15 +165,22 @@ export default function StandupTab() {
   };
 
   const copyEmailToClipboard = () => {
-    navigator.clipboard.writeText(internEmail)
+    navigator.clipboard
+      .writeText(internEmail)
       .then(() => {
         setCopySuccess(true);
         setTimeout(() => setCopySuccess(false), 2000);
       })
-      .catch(err => {
-        console.error('Failed to copy email: ', err);
+      .catch((err) => {
+        console.error("Failed to copy email: ", err);
       });
   };
+
+  async function checkEmail() {
+    const response = await fetch("/api/agentmail/demo");
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-xl">
@@ -197,65 +204,71 @@ export default function StandupTab() {
           />
         ))}
       </div>
-      
-      <div className="mt-10 pt-8 border-t border-gray-200">
+
+      <div className="mt-10 border-t border-gray-200 pt-8">
         <Heading level={2} className="mb-6 text-2xl font-bold text-gray-900">
           Email your intern
         </Heading>
-        
+
         <div className="rounded-2xl bg-white p-6 shadow-md">
           <div className="flex items-start">
-            <div className="flex-shrink-0 mr-4">
+            <div className="mr-4 flex-shrink-0">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-50 p-3 shadow-inner">
                 <EmailIcon />
               </div>
             </div>
-            
+
             <div className="flex-1">
               <Text className="mb-3 text-base text-gray-600">
-                Need something specific? Email your intern directly to request custom content, 
-                change voice settings, or for any other task.
+                Need something specific? <span onClick={checkEmail}>Email</span>{" "}
+                your intern directly to request custom content, change voice
+                settings, or for any other task.
               </Text>
-              
+
               <div className="mb-4 flex items-center">
-                <div 
+                <div
                   onClick={copyEmailToClipboard}
-                  className="cursor-pointer flex items-center rounded-md bg-gray-100 px-4 py-2 hover:bg-gray-200"
+                  className="flex cursor-pointer items-center rounded-md bg-gray-100 px-4 py-2 hover:bg-gray-200"
                 >
                   <Text className="font-mono text-lg font-semibold text-gray-900">
                     {internEmail}
                   </Text>
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="ml-2 h-5 w-5 text-gray-500" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="ml-2 h-5 w-5 text-gray-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    />
                   </svg>
                 </div>
-                
+
                 {copySuccess && (
-                  <span className="ml-3 text-sm text-green-600">
-                    Copied!
-                  </span>
+                  <span className="ml-3 text-sm text-green-600">Copied!</span>
                 )}
               </div>
-              
+
               <a
                 href="https://agentmail.to/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center opacity-70 transition-opacity hover:opacity-100"
               >
-                <Text className="text-xs text-gray-500 mr-1">powered by</Text>
+                <Text className="mr-1 text-xs text-gray-500">powered by</Text>
                 <img
                   src="/logos/agentmail.png"
                   alt="AgentMail"
                   className="h-5 w-auto"
                 />
-                <Text className="text-xs text-gray-700 ml-1 font-medium">AgentMail</Text>
+                <Text className="ml-1 text-xs font-medium text-gray-700">
+                  AgentMail
+                </Text>
               </a>
             </div>
           </div>
