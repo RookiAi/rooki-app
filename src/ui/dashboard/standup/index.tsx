@@ -220,9 +220,10 @@ export default function StandupTab() {
 
             <div className="flex-1">
               <Text className="mb-3 text-base text-gray-600">
-                Need something specific? <span onClick={checkEmail}>Email</span>{" "}
-                your intern directly to request custom content, change voice
-                settings, or for any other task.
+                <span onClick={checkEmail}>
+                  Need something specific? Email your intern directly to request
+                  custom content, change voice settings, or for any other task.
+                </span>
               </Text>
 
               <div className="mb-4 flex items-center">
