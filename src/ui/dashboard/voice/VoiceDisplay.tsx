@@ -66,7 +66,8 @@ const VoiceDisplay: React.FC<VoiceDisplayProps> = ({
 
   return (
     <div className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl">
-      <div className="absolute top-8 right-8">
+      <div className="absolute top-8 right-8 flex gap-3">
+        <Button onClick={() => {}}>Recalibrate my voice</Button>
         <Button onClick={onEditToggle}>Edit Voice Profile</Button>
       </div>
 

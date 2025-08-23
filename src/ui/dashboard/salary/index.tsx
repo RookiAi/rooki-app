@@ -6,6 +6,7 @@ import { Button } from "~/components/button";
 import { Badge } from "~/components/badge";
 import { Input } from "~/components/input";
 import { Fieldset, Field, Label } from "~/components/fieldset";
+import { useSession } from "next-auth/react";
 
 // Custom Range Slider component since there isn't one in the component library
 interface RangeSliderProps {
@@ -67,6 +68,7 @@ export default function SalaryTab() {
   const [salary, setSalary] = useState<Salary | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
+  const { data: sessionData } = useSession();
 
   // Simulating data fetch since we don't have the actual API endpoint yet
   // Later, this will be replaced with an actual API call
@@ -135,6 +137,26 @@ export default function SalaryTab() {
       setLoading(false);
     }
   };
+
+  async function handleCheckout() {
+    const response = await fetch("/api/autumn/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        sessionData: sessionData,
+        amount: sliderValue,
+      }),
+    });
+
+    const data = await response.json();
+    console.log("Checkout response:", data);
+
+    // open new window
+    const urlToOpen = data.data.url;
+    window.open(urlToOpen, "_blank");
+  }
 
   if (loading) {
     return (
@@ -224,7 +246,7 @@ export default function SalaryTab() {
 
               <div className="mt-10 flex justify-center space-x-4">
                 <Button
-                  type="submit"
+                  onClick={handleCheckout}
                   className="rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 px-8 py-3 text-lg font-medium text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl"
                 >
                   Save Changes
