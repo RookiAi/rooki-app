@@ -100,87 +100,107 @@ const VoiceEditor: React.FC<VoiceEditorProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-      <Heading level={2} className="mb-4">Edit Your Voice Profile</Heading>
+    <form onSubmit={handleSubmit} className="rounded-2xl bg-white overflow-hidden p-8 dark:bg-gray-800 shadow-xl">
+      <Heading level={2} className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+        Edit Your Voice Profile
+      </Heading>
       
-      <div className="mb-6">
-        <Strong className="mb-1 block">Positioning Statement:</Strong>
-        <Text className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-          Describe how you want your brand to be positioned in the market.
+      <div className="mb-10">
+        <Strong className="block text-lg text-gray-700 dark:text-gray-300 mb-3">Positioning Statement</Strong>
+        <Text className="text-base text-gray-600 dark:text-gray-400 mb-4">
+          Describe how you want your brand to be positioned in the market. This helps our AI understand your brand's mission and values.
         </Text>
         <Textarea
           value={editablePositioning}
           onChange={(e) => setEditablePositioning(e.target.value)}
-          className="mt-1 block w-full dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-          rows={4}
+          className="w-full text-lg p-4 rounded-xl bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+          rows={6}
         />
       </div>
       
-      <Divider />
+      <Divider className="my-8 border-gray-200 dark:border-gray-700" />
       
-      <div className="my-6">
-        <div className="flex justify-between items-center mb-3">
-          <Strong>Tone Characteristics:</Strong>
+      <div className="mb-10">
+        <div className="flex justify-between items-center mb-6">
+          <Strong className="text-lg text-gray-700 dark:text-gray-300">Tone Characteristics</Strong>
           <Button 
             type="button" 
             onClick={toggleAdvancedMode}
-            className="text-xs py-1"
+            className="px-4 py-2 rounded-full text-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
           >
             {isAdvancedMode ? "Simple Mode" : "Advanced Mode"}
           </Button>
         </div>
         
         {!isAdvancedMode ? (
-          <Fieldset className="space-y-4">
-            <div>
-              <Strong className="mb-1 block text-sm">Style:</Strong>
+          <div className="space-y-6">
+            <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-inner">
+              <Strong className="block text-base text-gray-700 dark:text-gray-300 mb-3">Style</Strong>
               <Input
                 value={style}
                 onChange={(e) => setStyle(e.target.value)}
-                className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+                className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
                 placeholder="e.g., casual, professional, technical"
               />
+              <Text className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                The overall style of your writing
+              </Text>
             </div>
             
-            <div>
-              <Strong className="mb-1 block text-sm">Formality:</Strong>
+            <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-inner">
+              <Strong className="block text-base text-gray-700 dark:text-gray-300 mb-3">Formality</Strong>
               <Input
                 value={formality}
                 onChange={(e) => setFormality(e.target.value)}
-                className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+                className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
                 placeholder="e.g., formal, semi-formal, informal"
               />
+              <Text className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                How formal or informal your writing should be
+              </Text>
             </div>
             
-            <div>
-              <Strong className="mb-1 block text-sm">Personality:</Strong>
+            <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-inner">
+              <Strong className="block text-base text-gray-700 dark:text-gray-300 mb-3">Personality</Strong>
               <Input
                 value={personality}
                 onChange={(e) => setPersonality(e.target.value)}
-                className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+                className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
                 placeholder="e.g., friendly, authoritative, playful"
               />
+              <Text className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                The personality traits that should come across in your writing
+              </Text>
             </div>
-          </Fieldset>
+          </div>
         ) : (
           <div>
-            <Strong className="mb-1 block">Raw JSON Configuration:</Strong>
+            <Strong className="block text-lg text-gray-700 dark:text-gray-300 mb-3">Raw JSON Configuration</Strong>
             <Textarea
               value={editableTone}
               onChange={(e) => setEditableTone(e.target.value)}
-              className="mt-1 block w-full font-mono dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-              rows={10}
+              className="w-full font-mono text-base p-4 rounded-xl bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+              rows={12}
             />
-            <Text className="mt-2 text-sm text-zinc-400 dark:text-zinc-300">
+            <Text className="mt-3 text-sm text-gray-500 dark:text-gray-400">
               Use valid JSON format. Example: {"{"}"style": "professional", "formality": "formal"{"}"}
             </Text>
           </div>
         )}
       </div>
       
-      <div className="flex space-x-3">
-        <Button type="submit">Save Changes</Button>
-        <Button type="button" onClick={handleCancel} className="border-gray-300 bg-white text-gray-700 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
+      <div className="flex justify-center space-x-4 mt-10">
+        <Button 
+          type="submit"
+          className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Save Changes
+        </Button>
+        <Button 
+          type="button" 
+          onClick={handleCancel} 
+          className="bg-white hover:bg-gray-50 text-gray-700 px-8 py-3 rounded-full text-lg font-medium border border-gray-300 transition-all duration-300 shadow-sm hover:shadow-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-600"
+        >
           Cancel
         </Button>
       </div>
