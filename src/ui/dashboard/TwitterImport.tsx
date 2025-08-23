@@ -108,14 +108,14 @@ const TwitterImport = () => {
   };
 
   return (
-    <div className="rounded-2xl bg-white overflow-hidden dark:bg-gray-800 shadow-xl">
+    <div className="rounded-2xl bg-white overflow-hidden shadow-xl">
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-indigo-600/20 mix-blend-multiply"></div>
         <div className="px-8 py-12 relative z-10">
-          <Heading level={2} className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <Heading level={2} className="text-3xl font-bold text-gray-900 mb-4">
             Create Your Voice Profile
           </Heading>
-          <Text className="mb-8 text-xl leading-relaxed text-gray-700 dark:text-gray-300 max-w-2xl">
+          <Text className="mb-8 text-xl leading-relaxed text-gray-700 max-w-2xl">
             To get started, we'll import your Twitter data to help create your voice profile. 
             This helps us understand your natural tone and positioning, allowing our AI to 
             generate content that matches your authentic style.
@@ -125,16 +125,16 @@ const TwitterImport = () => {
       
       <div className="p-8">
         {error && (
-          <div className="mb-8 rounded-xl border border-red-200 bg-red-50 p-6 dark:bg-red-900/20 dark:border-red-800">
-            <Heading level={3} className="text-red-800 text-lg font-medium dark:text-red-400 mb-2">Error</Heading>
-            <Text className="text-red-700 dark:text-red-300">{error}</Text>
+          <div className="mb-8 rounded-xl border border-red-200 bg-red-50 p-6">
+            <Heading level={3} className="text-red-800 text-lg font-medium mb-2">Error</Heading>
+            <Text className="text-red-700">{error}</Text>
           </div>
         )}
         
         {success && (
-          <div className="mb-8 rounded-xl border border-green-200 bg-green-50 p-6 dark:bg-green-900/20 dark:border-green-800">
-            <Heading level={3} className="text-green-800 text-lg font-medium dark:text-green-400 mb-2">Success</Heading>
-            <Text className="text-green-700 dark:text-green-300">Your voice has been created successfully!</Text>
+          <div className="mb-8 rounded-xl border border-green-200 bg-green-50 p-6">
+            <Heading level={3} className="text-green-800 text-lg font-medium mb-2">Success</Heading>
+            <Text className="text-green-700">Your voice has been created successfully!</Text>
           </div>
         )}
         
@@ -157,7 +157,7 @@ const TwitterImport = () => {
         
         {!sessionData && (
           <div className="mt-6 text-center">
-            <Text className="text-red-500 dark:text-red-400 font-medium">
+            <Text className="text-red-500 font-medium">
               You must be logged in to use this feature
             </Text>
           </div>

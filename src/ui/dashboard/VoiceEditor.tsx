@@ -100,63 +100,63 @@ const VoiceEditor: React.FC<VoiceEditorProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl bg-white overflow-hidden p-8 dark:bg-gray-800 shadow-xl">
-      <Heading level={2} className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+    <form onSubmit={handleSubmit} className="rounded-2xl bg-white overflow-hidden p-8 shadow-xl">
+      <Heading level={2} className="text-3xl font-bold text-gray-900 mb-8">
         Edit Your Intern's Voice Profile
       </Heading>
       
       <div className="mb-10">
-        <Strong className="block text-lg text-gray-700 dark:text-gray-300 mb-3">Positioning Statement</Strong>
-        <Text className="text-base text-gray-600 dark:text-gray-400 mb-4">
+        <Strong className="block text-lg text-gray-700 mb-3">Positioning Statement</Strong>
+        <Text className="text-base text-gray-600 mb-4">
           Describe how you want your brand to be positioned in the market. This helps our AI understand your brand's mission and values.
         </Text>
         <Textarea
           value={editablePositioning}
           onChange={(e) => setEditablePositioning(e.target.value)}
-          className="w-full text-lg p-4 rounded-xl bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+          className="w-full text-lg p-4 rounded-xl bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
           rows={6}
         />
       </div>
       
-      <Divider className="my-8 border-gray-200 dark:border-gray-700" />
+      <Divider className="my-8 border-gray-200" />
       
       <div className="mb-10">
         <div className="flex justify-between items-center mb-3">
-          <Strong className="text-lg text-gray-700 dark:text-gray-300">Tone Characteristics</Strong>
+          <Strong className="text-lg text-gray-700">Tone Characteristics</Strong>
           <Button 
             type="button" 
             onClick={toggleAdvancedMode}
-            className="px-4 py-2 rounded-full text-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
+            className="px-4 py-2 rounded-full text-sm bg-gray-100 hover:bg-gray-200 transition-colors"
           >
             {isAdvancedMode ? "Simple Mode" : "Advanced Mode"}
           </Button>
         </div>
         
-        <Text className="text-base text-gray-600 dark:text-gray-400 mb-4">
+        <Text className="text-base text-gray-600 mb-4">
           Define how your intern should communicate by setting their style, formality, and personality traits.
         </Text>
         
         {!isAdvancedMode ? (
           <div className="space-y-6">
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-inner">
-              <Strong className="block text-base text-gray-700 dark:text-gray-300 mb-3">Style</Strong>
+            <div className="bg-gray-50 rounded-xl p-6 shadow-inner">
+              <Strong className="block text-base text-gray-700 mb-3">Style</Strong>
               <Input
                 value={style}
                 onChange={(e) => setStyle(e.target.value)}
-                className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+                className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="e.g., casual, professional, technical"
               />
-              <Text className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              <Text className="mt-2 text-sm text-gray-500">
                 The overall style of your writing
               </Text>
             </div>
             
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-inner">
-              <Strong className="block text-base text-gray-700 dark:text-gray-300 mb-3">Formality</Strong>
+            <div className="bg-gray-50 rounded-xl p-6 shadow-inner">
+              <Strong className="block text-base text-gray-700 mb-3">Formality</Strong>
               <Input
                 value={formality}
                 onChange={(e) => setFormality(e.target.value)}
-                className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+                className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="e.g., formal, semi-formal, informal"
               />
               <Text className="mt-2 text-sm text-gray-500 dark:text-gray-400">
