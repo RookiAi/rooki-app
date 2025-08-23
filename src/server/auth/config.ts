@@ -1,7 +1,8 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { type DefaultSession, type NextAuthConfig } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
-
+import TwitterProvider from "next-auth/providers/twitter";
+import { env } from "~/env";
 import { db } from "~/server/db";
 
 /**
@@ -14,6 +15,7 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
+      twitterId?: string;
       // ...other properties
       // role: UserRole;
     } & DefaultSession["user"];
@@ -31,8 +33,37 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authConfig = {
+  callbacks: {
+    session: async ({ session, user }) => {
+      if (session.user) {
+        // Try to get the Twitter account for this user
+        try {
+          const account = await db.account.findFirst({
+            where: {
+              userId: user.id,
+              provider: "twitter",
+            },
+            select: {
+              providerAccountId: true,
+            },
+          });
+
+          if (account) {
+            session.user.id = account.providerAccountId;
+          }
+        } catch (error) {
+          console.error("Error fetching Twitter account:", error);
+        }
+      }
+      return session;
+    },
+  },
   providers: [
     DiscordProvider,
+    TwitterProvider({
+      clientId: env.AUTH_TWITTER_CLIENT,
+      clientSecret: env.AUTH_TWITTER_SECRET,
+    }),
     /**
      * ...add more providers here.
      *
@@ -44,13 +75,4 @@ export const authConfig = {
      */
   ],
   adapter: PrismaAdapter(db),
-  callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
-  },
 } satisfies NextAuthConfig;
