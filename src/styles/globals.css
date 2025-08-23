@@ -1,6 +1,42 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+@layer base {
+  html {
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 16px; /* Base font size */
+  }
+
+  body {
+    background-color: #F7F7F7;
+    color: #0B0B0D;
+    line-height: 1.75;
+  }
+
+  /* Improved spacing for content sections */
+  section, article, main, .content {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Improved link accessibility */
+  a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  /* Ensure proper contrast for form elements */
+  input, textarea, select, button {
+    font-size: 1rem;
+  }
+
+  /* Additional styles for headings to ensure readability */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  h1 { font-size: 1.875rem; margin-bottom: 1.5rem; }
+  h2 { font-size: 1.5rem; margin-bottom: 1.25rem; }
+  h3 { font-size: 1.25rem; margin-bottom: 1rem; }
 }

@@ -1,4 +1,3 @@
-// filepath: /Users/jingles/Documents/GitHub/rooki-app/src/ui/dashboard/index.tsx
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { api } from "~/utils/api";
@@ -14,9 +13,12 @@ type Voice = {
   id: string;
   positioning: string | null;
   tone: any;
+  voice_config?: any;
   x_handle?: string | null;
   storage_url?: string | null;
 };
+
+type TabType = "voice" | "standup" | "salary";
 
 export default function Dashboard() {
   const { data: sessionData } = useSession();
@@ -24,6 +26,7 @@ export default function Dashboard() {
   const [error, setError] = useState<string | null>(null);
   const [voice, setVoice] = useState<Voice | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [activeTab, setActiveTab] = useState<TabType>("voice");
 
   // Get the user's voice
   const { 
@@ -51,6 +54,7 @@ export default function Dashboard() {
           id: firstVoice.id,
           positioning: firstVoice.positioning,
           tone: firstVoice.tone,
+          voice_config: firstVoice.voice_config,
           x_handle: firstVoice.x_handle,
           storage_url: firstVoice.storage_url
         });
@@ -86,49 +90,177 @@ export default function Dashboard() {
 
   if (isLoadingVoices) {
     return (
-      <main className="container mx-auto p-4">
-        <div className="flex items-center justify-center h-64">
-          <Text>Loading your voice data...</Text>
+      <main className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="flex items-center justify-center h-64">
+            <div className="animate-pulse flex flex-col items-center">
+              <div className="h-8 w-8 rounded-full bg-gray-200 mb-4"></div>
+              <Text className="text-xl font-medium text-gray-400">Loading your data...</Text>
+            </div>
+          </div>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="container mx-auto p-4">
-      <Heading level={1} className="mb-8 text-center">Voice Dashboard</Heading>
-      
-      {loading && (
-        <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 dark:bg-gray-900 dark:bg-opacity-75 z-50">
-          <Text>Processing...</Text>
-        </div>
-      )}
-      
-      {error && (
-        <div className="mb-6 rounded-md border border-red-200 bg-red-50 p-4 dark:bg-red-900/20 dark:border-red-800">
-          <Text className="text-red-700 dark:text-red-300">{error}</Text>
-        </div>
-      )}
+    <main className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* <Heading level={1} className="text-center text-4xl font-bold tracking-tight text-gray-900 mb-16">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">
+            Intern
+          </span>
+        </Heading> */}
+        
+        {/* Tab Navigation */}
+        <div className="flex justify-center mb-12">
+          <nav className="flex space-x-12" aria-label="Tabs">
+            <button
+              onClick={() => setActiveTab("voice")}
+              className={`group flex flex-col items-center transition-all duration-300 ease-in-out`}
+            >
+              <span className={`text-xl font-medium mb-2 ${
+                activeTab === "voice"
+                  ? "text-blue-600"
+                  : "text-gray-500 group-hover:text-gray-700"
+              }`}>
+                Intern's Voice
+              </span>
+              <div className={`h-1 w-8 rounded-full transition-all duration-300 ${
+                activeTab === "voice" 
+                  ? "bg-blue-600 w-16" 
+                  : "bg-transparent group-hover:bg-gray-200"
+              }`}></div>
+            </button>
+            
+            <button
+              onClick={() => setActiveTab("standup")}
+              className={`group flex flex-col items-center transition-all duration-300 ease-in-out`}
+            >
+              <span className={`text-xl font-medium mb-2 ${
+                activeTab === "standup"
+                  ? "text-blue-600"
+                  : "text-gray-500 group-hover:text-gray-700"
+              }`}>
+                Daily Standup with Intern
+              </span>
+              <div className={`h-1 w-8 rounded-full transition-all duration-300 ${
+                activeTab === "standup" 
+                  ? "bg-blue-600 w-16" 
+                  : "bg-transparent group-hover:bg-gray-200"
+              }`}></div>
+            </button>
 
-      {voice ? (
-        <>
-          {!isEditing ? (
-            <VoiceDisplay
-              positioning={voice.positioning}
-              tone={voice.tone}
-              onEditToggle={handleEditToggle}
-            />
-          ) : (
-            <VoiceEditor
-              positioning={voice.positioning}
-              tone={voice.tone}
-              onUpdate={handleVoiceUpdate}
-            />
-          )}
-        </>
-      ) : (
-        <TwitterImport />
-      )}
+            <button
+              onClick={() => setActiveTab("salary")}
+              className={`group flex flex-col items-center transition-all duration-300 ease-in-out`}
+            >
+              <span className={`text-xl font-medium mb-2 ${
+                activeTab === "salary"
+                  ? "text-blue-600"
+                  : "text-gray-500 group-hover:text-gray-700"
+              }`}>
+                Intern's Salary
+              </span>
+              <div className={`h-1 w-8 rounded-full transition-all duration-300 ${
+                activeTab === "salary" 
+                  ? "bg-blue-600 w-16" 
+                  : "bg-transparent group-hover:bg-gray-200"
+              }`}></div>
+            </button>
+          </nav>
+        </div>
+        
+        {loading && (
+          <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-white/70 z-50">
+            <div className="bg-white p-6 rounded-2xl shadow-lg flex items-center space-x-4">
+              <div className="animate-spin h-6 w-6 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+              <Text className="text-lg font-medium text-gray-900">Processing...</Text>
+            </div>
+          </div>
+        )}
+        
+        {error && (
+          <div className="mb-8 rounded-xl border border-red-200 bg-red-50 p-6 dark:bg-red-900/20 dark:border-red-800 shadow-sm">
+            <Text className="text-red-700 dark:text-red-300 text-lg">{error}</Text>
+          </div>
+        )}
+
+        {/* Tab Content with Animation */}
+        <div className="relative rounded-2xl shadow-xl">
+          {/* Voice Tab */}
+          <div 
+            className={`transition-opacity duration-500 ${
+              activeTab === "voice" ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 absolute inset-0 pointer-events-none"
+            }`}
+          >
+            {voice ? (
+              <>
+                {!isEditing ? (
+                  <VoiceDisplay
+                    positioning={voice.positioning}
+                    tone={voice.tone}
+                    onEditToggle={handleEditToggle}
+                  />
+                ) : (
+                  <VoiceEditor
+                    positioning={voice.positioning}
+                    tone={voice.tone}
+                    onUpdate={handleVoiceUpdate}
+                  />
+                )}
+              </>
+            ) : (
+              <TwitterImport />
+            )}
+          </div>
+
+          {/* Standup Tab */}
+          <div 
+            className={`transition-opacity duration-500 ${
+              activeTab === "standup" ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 absolute inset-0 pointer-events-none"
+            }`}
+          >
+            <div className="rounded-2xl bg-white overflow-hidden p-8">
+              <Heading level={2} className="text-3xl font-bold text-gray-900 mb-6">Standup</Heading>
+              <div className="p-8 rounded-xl bg-gray-50 flex flex-col items-center justify-center">
+                <svg className="w-16 h-16 text-gray-300 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <Text className="text-xl font-medium text-gray-600 text-center mb-2">
+                  Standup features coming soon
+                </Text>
+                <Text className="text-gray-500 dark:text-gray-400 text-center max-w-md">
+                  We're working on new features to make your standups more efficient and insightful.
+                </Text>
+              </div>
+            </div>
+          </div>
+
+          {/* Salary Tab */}
+          <div 
+            className={`transition-opacity duration-500 ${
+              activeTab === "salary" ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 absolute inset-0 pointer-events-none"
+            }`}
+          >
+            <div className="rounded-2xl bg-white overflow-hidden p-8">
+              <Heading level={2} className="text-3xl font-bold text-gray-900 mb-6">Salary</Heading>
+              <div className="p-8 rounded-xl bg-gray-50 flex flex-col items-center justify-center">
+                <svg className="w-16 h-16 text-gray-300 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <Text className="text-xl font-medium text-gray-600 dark:text-gray-300 text-center mb-2">
+                  Salary features coming soon
+                </Text>
+                <Text className="text-gray-500 dark:text-gray-400 text-center max-w-md">
+                  We're working on new features to make your salary management more efficient and insightful.
+                </Text>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </main>
   );
 }
