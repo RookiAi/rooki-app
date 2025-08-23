@@ -2,12 +2,41 @@ import Dashboard from "~/ui/dashboard";
 
 
 export default function PageDashboard() {
-  return <Dashboard />;
-  // return <Test />;
+  // return <Dashboard />;
+  return <TestTelegram />;
+}
+
+function TestTelegram() {
+  async function debug() {
+    try {
+      const response = await fetch('/api/telegram/sendMessage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chatId: 492148889,
+          text: 'Hello from Rooki!!!!',
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const allMessages = await response.json();
+      console.log('AgentMail messages:', allMessages);
+    } catch (error) {
+      console.error('Failed to fetch inbox messages:', error);
+    }
+  }
+  return (
+    <div>
+      <button onClick={debug}>Debug</button>
+    </div>
+  );
 }
 
 
-function Test() {
+function TestAgentMail() {
   async function debug() {
     try {
       const response = await fetch('/api/agentmail/listMessages');
