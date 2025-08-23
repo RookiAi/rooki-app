@@ -159,20 +159,20 @@ const VoiceEditor: React.FC<VoiceEditorProps> = ({
                 className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="e.g., formal, semi-formal, informal"
               />
-              <Text className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              <Text className="mt-2 text-sm text-gray-500">
                 How formal or informal your writing should be
               </Text>
             </div>
             
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-inner">
-              <Strong className="block text-base text-gray-700 dark:text-gray-300 mb-3">Personality</Strong>
+            <div className="bg-gray-50 rounded-xl p-6 shadow-inner">
+              <Strong className="block text-base text-gray-700 mb-3">Personality</Strong>
               <Input
                 value={personality}
                 onChange={(e) => setPersonality(e.target.value)}
-                className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+                className="w-full text-lg p-3 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="e.g., friendly, authoritative, playful"
               />
-              <Text className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              <Text className="mt-2 text-sm text-gray-500">
                 The personality traits that should come across in your writing
               </Text>
             </div>
