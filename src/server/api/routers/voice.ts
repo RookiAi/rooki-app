@@ -12,6 +12,25 @@ export const voiceRouter = createTRPCRouter({
       where: { userId: ctx.session.user.id },
     });
   }),
+  
+  updateTelegramChatId: protectedProcedure
+    .input(
+      z.object({
+        id: z.string().uuid(),
+        telegram_chat_id: z.string(),
+      }),
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.db.voice.update({
+        where: { 
+          id: input.id,
+          userId: ctx.session.user.id, // Ensure user owns this voice
+        },
+        data: { 
+          telegram_chat_id: input.telegram_chat_id,
+        },
+      });
+    }),
 
   updateStorageUrl: protectedProcedure
     .input(

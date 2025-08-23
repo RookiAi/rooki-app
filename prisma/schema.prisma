@@ -72,6 +72,7 @@ model Voice {
   x_handle     String?
   storage_url  String?  // manifest/corpus URL (Supabase)
   positioning  String?  @db.Text
+  telegram_chat_id     String?
 
   // JSON fields
   tone         Json?    // structured JSON (e.g., {style:"direct", knobs:{...}})

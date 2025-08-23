@@ -37,9 +37,19 @@ export default async function handler(
     // Check if there's a message with a chat ID
     if (update.message?.chat?.id) {
       const chatId = update.message.chat.id;
+      const messageText = update.message.text || "";
 
-      // Send reply message "hi" using our utility function
-      await sendTelegramMessage(chatId, `hi, your chat id is ${chatId}`);
+      // Check if the message is the /start command
+      if (messageText === "/start") {
+        // Reply with the chat ID when user sends /start
+        await sendTelegramMessage(
+          chatId,
+          `Hi, I am Rooki! Your AI intern to grow your social media presence. I learn your company's positioning + tone, doom-scroll 24/7, and surface only the trends worth jumping on.\n\nWhen action's needed, I will ping you here on Telegram with a ready-to-post draft. Want a long-form tweet or to tweak positioning? Email me—I'll handle it. You build; I handle the timeline. Feel free to send me a message anytime!\n\nPsst, this is our secret code, ${chatId}, put it on the dashboard and I'll know you're ready to take action.`,
+        );
+      } else {
+        // Send default reply message for other messages
+        await sendTelegramMessage(chatId, `hi, your chat id is ${chatId}`);
+      }
     }
 
     // Return success response to Telegram
