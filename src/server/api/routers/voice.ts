@@ -8,7 +8,6 @@ import {
 
 export const voiceRouter = createTRPCRouter({
   getVoiceByUser: protectedProcedure.query(({ ctx }) => {
-    console.log(22223, ctx.session.user.id)
     return ctx.db.voice.findMany({
       where: { userId: ctx.session.user.id },
     });

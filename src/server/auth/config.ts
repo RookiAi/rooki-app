@@ -36,6 +36,9 @@ export const authConfig = {
   callbacks: {
     session: async ({ session, user }) => {
       if (session.user) {
+        // Set the user ID to the database ID (cuid)
+        session.user.id = user.id;
+        
         // Try to get the Twitter account for this user
         try {
           const account = await db.account.findFirst({
@@ -49,7 +52,7 @@ export const authConfig = {
           });
 
           if (account) {
-            session.user.id = account.providerAccountId;
+            session.user.twitterId = account.providerAccountId;
           }
         } catch (error) {
           console.error("Error fetching Twitter account:", error);
