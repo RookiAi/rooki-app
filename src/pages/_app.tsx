@@ -19,8 +19,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <ThemeProvider attribute="class">
-        <div className={`${geist.className} min-h-screen bg-white dark:bg-gray-900`}>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <div className={`${geist.className} min-h-screen text-base leading-relaxed`}>
           <Navbar />
           <Component {...pageProps} />
         </div>

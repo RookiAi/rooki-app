@@ -1,4 +1,3 @@
-// filepath: /Users/jingles/Documents/GitHub/rooki-app/src/ui/dashboard/index.tsx
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { api } from "~/utils/api";
@@ -19,7 +18,7 @@ type Voice = {
   storage_url?: string | null;
 };
 
-type TabType = "voice" | "standup";
+type TabType = "voice" | "standup" | "salary";
 
 export default function Dashboard() {
   const { data: sessionData } = useSession();
@@ -151,6 +150,24 @@ export default function Dashboard() {
                   : "bg-transparent group-hover:bg-gray-200 dark:group-hover:bg-gray-700"
               }`}></div>
             </button>
+
+            <button
+              onClick={() => setActiveTab("salary")}
+              className={`group flex flex-col items-center transition-all duration-300 ease-in-out`}
+            >
+              <span className={`text-xl font-medium mb-2 ${
+                activeTab === "salary"
+                  ? "text-blue-600 dark:text-blue-400"
+                  : "text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300"
+              }`}>
+                Intern's Salary
+              </span>
+              <div className={`h-1 w-8 rounded-full transition-all duration-300 ${
+                activeTab === "salary" 
+                  ? "bg-blue-600 dark:bg-blue-400 w-16" 
+                  : "bg-transparent group-hover:bg-gray-200 dark:group-hover:bg-gray-700"
+              }`}></div>
+            </button>
           </nav>
         </div>
         
@@ -170,11 +187,11 @@ export default function Dashboard() {
         )}
 
         {/* Tab Content with Animation */}
-        <div className="relative overflow-hidden rounded-2xl shadow-xl">
+        <div className="relative rounded-2xl shadow-xl">
           {/* Voice Tab */}
           <div 
             className={`transition-opacity duration-500 ${
-              activeTab === "voice" ? "opacity-100 z-10" : "opacity-0 z-0 absolute inset-0"
+              activeTab === "voice" ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 absolute inset-0 pointer-events-none"
             }`}
           >
             {voice ? (
@@ -201,7 +218,7 @@ export default function Dashboard() {
           {/* Standup Tab */}
           <div 
             className={`transition-opacity duration-500 ${
-              activeTab === "standup" ? "opacity-100 z-10" : "opacity-0 z-0 absolute inset-0"
+              activeTab === "standup" ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 absolute inset-0 pointer-events-none"
             }`}
           >
             <div className="rounded-2xl bg-white overflow-hidden p-8 dark:bg-gray-800">
@@ -219,6 +236,29 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
+
+          {/* Salary Tab */}
+          <div 
+            className={`transition-opacity duration-500 ${
+              activeTab === "salary" ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 absolute inset-0 pointer-events-none"
+            }`}
+          >
+            <div className="rounded-2xl bg-white overflow-hidden p-8 dark:bg-gray-800">
+              <Heading level={2} className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Salary</Heading>
+              <div className="p-8 rounded-xl bg-gray-50 dark:bg-gray-700 flex flex-col items-center justify-center">
+                <svg className="w-16 h-16 text-gray-300 dark:text-gray-600 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <Text className="text-xl font-medium text-gray-600 dark:text-gray-300 text-center mb-2">
+                  Salary features coming soon
+                </Text>
+                <Text className="text-gray-500 dark:text-gray-400 text-center max-w-md">
+                  We're working on new features to make your salary management more efficient and insightful.
+                </Text>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </main>

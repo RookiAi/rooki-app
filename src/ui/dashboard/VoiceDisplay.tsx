@@ -103,7 +103,7 @@ const VoiceDisplay: React.FC<VoiceDisplayProps> = ({ positioning, tone, onEditTo
       <div className="flex justify-center">
         <Button 
           onClick={onEditToggle} 
-          className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+          className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl relative z-20 pointer-events-auto"
         >
           Edit Voice Profile
         </Button>

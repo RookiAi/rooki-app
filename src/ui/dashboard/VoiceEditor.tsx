@@ -102,7 +102,7 @@ const VoiceEditor: React.FC<VoiceEditorProps> = ({
   return (
     <form onSubmit={handleSubmit} className="rounded-2xl bg-white overflow-hidden p-8 dark:bg-gray-800 shadow-xl">
       <Heading level={2} className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-        Edit Your Voice Profile
+        Edit Your Intern's Voice Profile
       </Heading>
       
       <div className="mb-10">
@@ -121,7 +121,7 @@ const VoiceEditor: React.FC<VoiceEditorProps> = ({
       <Divider className="my-8 border-gray-200 dark:border-gray-700" />
       
       <div className="mb-10">
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-3">
           <Strong className="text-lg text-gray-700 dark:text-gray-300">Tone Characteristics</Strong>
           <Button 
             type="button" 
@@ -131,6 +131,10 @@ const VoiceEditor: React.FC<VoiceEditorProps> = ({
             {isAdvancedMode ? "Simple Mode" : "Advanced Mode"}
           </Button>
         </div>
+        
+        <Text className="text-base text-gray-600 dark:text-gray-400 mb-4">
+          Define how your intern should communicate by setting their style, formality, and personality traits.
+        </Text>
         
         {!isAdvancedMode ? (
           <div className="space-y-6">
