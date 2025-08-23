@@ -47,7 +47,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    voices        Voice[]
+    convo        ConvoSummary?
 }
 
 model VerificationToken {
@@ -80,6 +80,106 @@ model Voice {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
+  SuggestedCategory SuggestedCategory[]
+}
+
+model Message {
+  id           String   @id @default(uuid())
+  userId             String
+  role                String
+  channel             String
+  external_chat_id    String?
+  external_message_id String?
+  external_event_id   String?
+  reply_to_message_id String?
+  text                String
+  created_at          DateTime @default(now())
+  edited_at           DateTime?
+  
+}
+
+model ConvoSummary {
+    id           String   @id @default(uuid())
+  userId             String @unique
+  summary     String
+  token_count Int
+  updated_at  DateTime @default(now())
   user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserTrendingSnapshot {
+  id          String   @id @default(uuid())
+  voiceId     String  
+  storage_url  String
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+////////////////// standup
+
+model DailyTarget {
+  id                    String   @id @default(uuid())
+  voiceId     String   @unique
+  original_update_count Int      @default(0)
+  reply_count           Int      @default(0)
+  niche_reply_count     Int      @default(0)
+  date                  DateTime @db.Date // ISO date-only
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([voiceId, date]) // one row per voice per day
+  @@index([voiceId, date])
+}
+
+/// ---------- Categories, Drafts, Tweets ----------
+model SuggestedCategory {
+  id                    String @id @default(uuid())
+  voiceId String
+
+  voice                 Voice @relation(fields: [voiceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([voiceId])
+}
+
+model DraftFromCategory {
+  id          String @id @default(uuid())
+  category_id String @unique
+  draft       String @db.Text           // generated content
+  intern_comment String? @db.Text       // pillar fit / policy safe notes
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model CategoryTweet {
+  id          String @id @default(uuid())
+  category_id String
+  tweet_url   String
+
+  drafts      DraftFromTweet[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([category_id, tweet_url]) // avoid duplicates within a category
+  @@index([category_id])
+}
+
+model DraftFromTweet {
+  id         String @id @default(uuid())
+  CategoryTweetId   String 
+  type       String
+  draft      String @db.Text
+  intern_comment String? @db.Text
+
+  tweet      CategoryTweet @relation(fields: [CategoryTweetId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
 }

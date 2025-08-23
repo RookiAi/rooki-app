@@ -34,7 +34,7 @@ const TwitterImport = () => {
         },
         body: JSON.stringify({
           sessionData,
-          numberOfPages: 1,
+          numberOfPages: 5,
           excludeReplies: false,
         }),
       });
