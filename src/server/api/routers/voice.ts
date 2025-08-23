@@ -12,4 +12,19 @@ export const voiceRouter = createTRPCRouter({
       where: { userId: ctx.session.user.id },
     });
   }),
+
+  updateStorageUrl: protectedProcedure
+    .input(
+      z.object({
+        id: z.string().uuid(),
+        url: z.string().url(),
+        x_handle: z.string(),
+      }),
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.db.voice.update({
+        where: { id: input.id },
+        data: { storage_url: input.url, x_handle: input.x_handle },
+      });
+    }),
 });
