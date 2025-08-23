@@ -1,31 +1,55 @@
 import Dashboard from "~/ui/dashboard";
 
-
 export default function PageDashboard() {
   return <Dashboard />;
-  // return <TestTelegram />;
+  // return <TestTwitter />;
+}
+
+function TestTwitter() {
+  async function debug() {
+    const response = await fetch("/api/twitter/manualGetUserTweets", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: "15540222",
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log("tweets:", data.data);
+    console.log("tweets 2:", JSON.stringify(data.data));
+  }
+  return (
+    <div>
+      <button onClick={debug}>Debug</button>
+    </div>
+  );
 }
 
 function TestTelegram() {
   async function debug() {
     try {
-      const response = await fetch('/api/telegram/sendMessage', {
-        method: 'POST',
+      const response = await fetch("/api/telegram/sendMessage", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           chatId: 492148889,
-          text: 'Hello from Rooki!!!!',
+          text: "Hello from Rooki!!!!",
         }),
       });
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
       const allMessages = await response.json();
-      console.log('AgentMail messages:', allMessages);
+      console.log("AgentMail messages:", allMessages);
     } catch (error) {
-      console.error('Failed to fetch inbox messages:', error);
+      console.error("Failed to fetch inbox messages:", error);
     }
   }
   return (
@@ -35,18 +59,17 @@ function TestTelegram() {
   );
 }
 
-
 function TestAgentMail() {
   async function debug() {
     try {
-      const response = await fetch('/api/agentmail/listMessages');
+      const response = await fetch("/api/agentmail/listMessages");
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
       const allMessages = await response.json();
-      console.log('AgentMail messages:', allMessages);
+      console.log("AgentMail messages:", allMessages);
     } catch (error) {
-      console.error('Failed to fetch inbox messages:', error);
+      console.error("Failed to fetch inbox messages:", error);
     }
   }
   return (

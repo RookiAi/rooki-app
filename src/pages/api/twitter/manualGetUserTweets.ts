@@ -18,39 +18,27 @@ export default async function handler(
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  // Extract sessionData from the request body
+  // Extract userId from the request body
   const {
-    sessionData,
+    userId,
     paginationToken,
     numberOfPages = 1,
     excludeReplies = false,
   } = req.body;
 
-  if (!sessionData || !sessionData.user) {
+  if (!userId) {
     return res
-      .status(401)
-      .json({ error: "You must be logged in to access this endpoint" });
+      .status(400)
+      .json({ error: "Twitter user ID is required" });
   }
 
-  console.log("Session data:", sessionData);
+  console.log("Manual Twitter User ID:", userId);
   console.log("Pagination token:", paginationToken);
   console.log("Number of pages requested:", numberOfPages);
 
   try {
-    // Check if we already have the Twitter ID in the session
-    let twitterUserId = sessionData.user?.twitterId;
-    console.log("Twitter User ID:", twitterUserId);
-
-    // For testing purposes, if twitterId is not available, return a mock error
-    if (!twitterUserId) {
-      return res.status(400).json({ 
-        error: "Twitter ID not found in session",
-        message: "The Twitter ID is not available in your session. Make sure your account is connected to Twitter."
-      });
-    }
-
     // Prepare the fetch to Twitter API
-    const twitterApiUrl = `https://api.x.com/2/users/${twitterUserId}/tweets`;
+    const twitterApiUrl = `https://api.x.com/2/users/${userId}/tweets`;
 
     // Add query parameters according to X API docs
     const queryParams = new URLSearchParams({
