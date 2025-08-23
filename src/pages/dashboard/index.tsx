@@ -2,8 +2,8 @@ import Dashboard from "~/ui/dashboard";
 
 
 export default function PageDashboard() {
-  // return <Dashboard />;
-  return <Test />;
+  return <Dashboard />;
+  // return <Test />;
 }
 
 

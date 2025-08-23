@@ -11,14 +11,15 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method !== "GET") {
-    return res.status(405).end();
+    res.status(405).end();
+    return;
   }
 
   try {
     const messages = await client.inboxes.messages.list("intern@rooki.ai");
-    return res.status(200).json(messages);
+    res.status(200).json({ data: messages });
   } catch (error) {
     console.error("Error fetching messages:", error);
-    return res.status(500).json({ error: "Failed to fetch messages" });
+    res.status(500).json({ error: "Failed to fetch messages" });
   }
 }
