@@ -38,9 +38,9 @@ export default async function handler(
 
     const standupData = await standupResponse.json();
 
-    let replyMessage = `What do you think about this post?\n\n`;
+    let replyMessage = `Yea sure thing boss.\n\nWhat do you think about this post?\n\n`;
     replyMessage += `${standupData.message}\n\n`;
-    replyMessage += `Should I post about it?`;
+    replyMessage += `Should I post about it? You wanna change anything?`;
 
     const reply = await client.inboxes.messages.reply(
       "intern@rooki.ai",

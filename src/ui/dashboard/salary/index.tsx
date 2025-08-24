@@ -249,7 +249,7 @@ export default function SalaryTab() {
                   onClick={handleCheckout}
                   className="rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 px-8 py-3 text-lg font-medium text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl"
                 >
-                  Save Changes
+                  Pay My Intern
                 </Button>
                 <Button
                   type="button"

@@ -46,6 +46,12 @@ export default async function handler(
           chatId,
           `Hi, I am Rooki! Your AI intern to grow your social media presence. I learn your company's positioning + tone, doom-scroll 24/7, and surface only the trends worth jumping on.\n\nWhen action's needed, I will ping you here on Telegram with a ready-to-post draft. Want a long-form tweet or to tweak positioning? Email me—I'll handle it. You build; I handle the timeline. Feel free to send me a message anytime!\n\nPsst, this is our secret code, ${chatId}, put it on the dashboard and I'll know you're ready to take action.`,
         );
+      } else if (messageText == "post it") {
+        await sendTelegramMessage(chatId, "Okay, posting your message...");
+
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+
+        await sendTelegramMessage(chatId, "Done!");
       } else {
         const response = await fetch(
           "http://130.211.209.31:8000/v1/standup/coach",
