@@ -11,8 +11,9 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo/App Name */}
           <div className="flex flex-shrink-0 items-center">
-            <Link href="/" className="text-xl font-bold text-zinc-950">
-              Rooki
+            <Link href="/" className="flex items-center">
+              <span className="text-xl font-bold text-indigo-600 mr-2">Rooki</span>
+              <span className="text-zinc-500">AI</span>
             </Link>
           </div>
 
