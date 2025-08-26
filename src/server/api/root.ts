@@ -1,6 +1,7 @@
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { voiceRouter } from "./routers/voice";
 import { salaryRouter } from "./routers/salary";
+import { waitlistRouter } from "./routers/waitlist";
 
 /**
  * This is the primary router for your server.
@@ -10,6 +11,7 @@ import { salaryRouter } from "./routers/salary";
 export const appRouter = createTRPCRouter({
   voice: voiceRouter,
   salary: salaryRouter,
+  waitlist: waitlistRouter,
 });
 
 // export type definition of API

@@ -36,7 +36,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <div
           className={`${geist.className} min-h-screen text-base leading-relaxed`}
         >
-          <Navbar />
+          {/* <Navbar /> */}
           <Component {...pageProps} />
         </div>
       </ThemeProvider>
