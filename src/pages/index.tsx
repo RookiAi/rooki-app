@@ -84,15 +84,15 @@ export default function Home() {
           <div className="space-y-5 relative z-10" style={{ fontFamily: "'Inter', sans-serif", fontSize: '1.25rem', lineHeight: '1.7' }}>
             <div className="ml-2 mb-6" style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '2.2rem' }}>A letter from us...</div>
             
-            <div className="text-xl">Hi there,</div>
+            <div className="text-xl">Hi there 👋 Jingles and Hinson here.</div>
             
-            <div className="text-xl">Jingles and Hinson here. Rooki started out of our own struggle. As startup founders, we poured every waking hour into building products, talking to users, and shipping code. But one thing kept slipping through the cracks: social media. Writing posts, catching trends, replying to mentions, it always felt like a second full-time job.</div>
+            <div className="text-xl">Rooki started from a pain we kept running into. As founders, we spend all day building, talking to users, shipping code… and then realize our socials were dead quiet. Writing posts, catching trends, replying to mentions, honestly felt like a whole other job.</div>
             
-            <div className="text-xl">At the recent YC AI Agents Hackathon, we decided to do something about it. In 24 hours, we built the first version of Rooki, an AI social media intern that learns your voice, scrolls the timelines, and helps you stay active online while you stay focused on building.</div>
+            <div className="text-xl">At the YC AI Agents Hackathon, we decided to fix that for ourselves. In 24 hours we hacked together Rooki, your AI social media intern. It learns your voice, scrolls the timeline, and helps you stay visible while you stay focused on building.</div>
             
-            <div className="text-xl">Rooki isn't about chasing vanity metrics. It's about making sure your community hears from you consistently, in your own style. It's about not missing that conversation with a future customer, partner, or investor, just because you were heads-down coding.</div>
+            <div className="text-xl">Rooki isn’t about chasing likes or vanity metrics. It’s about showing up consistently, in your own style. It’s about not missing that moment with a future customer, partner, or investor just because you were deep in code.</div>
             
-            <div className="text-xl">We're now opening Rooki to more founders and teams. If you want early access, updates, and behind-the-scenes stories as we grow, drop your email below.</div>
+            <div className="text-xl">We're now opening Rooki to more founders and teams. If you want early access + updates as we grow, drop your email below.</div>
             
             <div className="my-8 transform rotate-0.5 -mx-2 px-2 py-4" style={{ 
               backgroundColor: 'rgba(0,0,0,0.02)',
