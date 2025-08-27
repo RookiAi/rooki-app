@@ -84,17 +84,21 @@ export default function Home() {
           <div className="space-y-5 relative z-10" style={{ fontFamily: "'Inter', sans-serif", fontSize: '1.25rem', lineHeight: '1.7' }}>
             <div className="ml-2 mb-6" style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '2.2rem' }}>A letter from us...</div>
             
-            <div className="text-xl">Hi there 👋 Jingles and Hinson here.</div>
+            <div className="text-xl">Hi, it's Jingles and Hinson.</div>
             
-            <div className="text-xl">Rooki started from a pain we kept running into. As founders, we spend all day building, talking to users, shipping code… and then realize our socials were dead quiet. Writing posts, catching trends, replying to mentions, honestly felt like a whole other job.</div>
+            <div className="text-xl">We built Rooki to solve a pain every founder knows:<br/>Building your product vs. Building your social media presence.</div>
             
-            <div className="text-xl">At the YC AI Agents Hackathon, we decided to fix that for ourselves. In 24 hours we hacked together Rooki, your AI social media intern. It learns your voice, scrolls the timeline, and helps you stay visible while you stay focused on building.</div>
+            <div className="text-xl">As founders, we pour everything into users, bugs, features, chasing our vision. Our focus is entirely on building. Social media felt secondary, almost optional.</div>
             
-            <div className="text-xl">Rooki isn’t about chasing likes or vanity metrics. It’s about showing up consistently, in your own style. It’s about not missing that moment with a future customer, partner, or investor just because you were deep in code.</div>
+            <div className="text-xl">But the reality is that if no one sees your work, it's like it doesn't exist.</div>
             
-            <div className="text-xl">We're now opening Rooki to more founders and teams. If you want early access + updates as we grow, drop your email below.</div>
+            <div className="text-xl">At the YC AI Agents Hackathon, we asked ourselves:<br/>What if we never had to worry about this again?</div>
             
-            <div className="my-8 transform rotate-0.5 -mx-2 px-2 py-4" style={{ 
+            <div className="text-xl">So in 24 hours, Rooki, your AI social media intern is born.<br/>It learns your voice.<br/>Scrolls the timeline.<br/>Keeps you visible and consistent while you keep building.</div>
+            
+            <div className="text-xl">Rooki ensures that you never miss the moments that matter.<br/>No more FOMO.</div>
+            
+            <div className="text-xl">If you'd like to hire Rooki as your social media intern, drop your email below.</div>            <div className="my-8 transform rotate-0.5 -mx-2 px-2 py-4" style={{ 
               backgroundColor: 'rgba(0,0,0,0.02)',
               borderTop: '1px dashed rgba(0,0,0,0.1)',
               borderBottom: '1px dashed rgba(0,0,0,0.1)',
@@ -125,7 +129,7 @@ export default function Home() {
               )}
             </div>
             
-            <div className="text-xl">We'd love to have you along for the journey.</div>
+            <div className="text-xl">We'd love to have you join us.</div>
             
             <div className="mt-10 ml-auto text-right" style={{ maxWidth: '200px' }}>
               <div className="text-xl mb-0">Cheers,</div>
