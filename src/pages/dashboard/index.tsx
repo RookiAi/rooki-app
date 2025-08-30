@@ -2,7 +2,7 @@ import Dashboard from "~/ui/dashboard";
 
 export default function PageDashboard() {
   return <Dashboard />;
-  // return <TestAgentMail />;
+  // return <TestTwitter />;
 }
 
 function TestTwitter() {
@@ -13,7 +13,7 @@ function TestTwitter() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: "15540222",
+        userId: "1130405074939863040",
       }),
     });
     if (!response.ok) {
